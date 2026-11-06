@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from datetime import datetime, timedelta
 import re
 
@@ -6,7 +6,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return {"message": "Hello! This is my first application Development"}
+    return jsonify(message="Hello")
+
+@app.route('/test', methods = ["GET", "POST"])
+def test():
+    if request.method == "GET": return jsonify(status = "OK", method = "GET")
+    if request.method == "POST": return jsonify(status = "OK", method = "POST")
 
 class TimeTracker():
     def __init__(self, date_str: str, start_time: str, end_time: str):
