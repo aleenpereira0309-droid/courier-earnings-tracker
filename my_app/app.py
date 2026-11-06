@@ -1,5 +1,12 @@
+from flask import Flask
 from datetime import datetime, timedelta
 import re
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return {"message": "Hello! This is my first application Development"}
 
 class TimeTracker():
     def __init__(self, date_str: str, start_time: str, end_time: str):
